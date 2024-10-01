@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import LogoSvg from './assets/logo';
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
         <p className="text-base animate-pulse font-semibold text-indigo-600">gRPC Project</p>
         
         <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-5xl">Hello {inputValue && inputValue}</h1>
-        <p className="mt-6 text-base leading-7 text-gray-600">Inform a username to continue:</p>
+        <p className="mt-6 text-base leading-7">Inform a username to continue:</p>
         
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <form

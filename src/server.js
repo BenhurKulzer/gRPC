@@ -1,7 +1,7 @@
 import grpc from '@grpc/grpc-js';
 import protoLoader from '@grpc/proto-loader';
 
-const packageDefinition = protoLoader.loadSync('api.proto', {});
+const packageDefinition = protoLoader.loadSync('.protos/api.proto', {});
 const userProto = grpc.loadPackageDefinition(packageDefinition).user;
 
 function getUsername(call, callback) {
