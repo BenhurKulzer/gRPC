@@ -1,9 +1,9 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "main": "server.js",
   "type": "module",
+  "license": "MIT",
   "dependencies": {
     "@grpc/grpc-js": "^1.11.3",
     "@grpc/proto-loader": "^0.7.13",

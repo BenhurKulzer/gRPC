@@ -5,20 +5,6 @@ import { GreetRequest } from "./protos/greeting_pb";
 
 import LogoSvg from './assets/logo';
 
-const greetClient = async (name) => {
-  const EnvoyURL = "http://localhost:8000";
-  const client = new GreeterClient(EnvoyURL);
-
-  const request = new GreetRequest();
-  request.setName(name);
-
-  const response = await client.greet(request, {});
-  console.log('Response A: ', response);
-
-  // const div = document.getElementById("response");
-  // if (div) div.innerText = response.getMessage();
-};
-
 function App() {
   const [inputValue, setInputValue] = useState('');
 
@@ -27,6 +13,23 @@ function App() {
     if (data) greetClient(data);
   }
 
+  const greetClient = async (name) => {
+    const EnvoyURL = "http://127.0.0.1:8000";
+    const client = new GreeterClient(EnvoyURL);
+  
+    const request = new GreetRequest();
+    request.setName(name);
+
+    client.greet(request, {}, (err, response) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      
+      setInputValue(response.getMessage());
+    });
+  };
+
   return (
     <div className="grid h-screen place-items-center gap-6 px-6 py-24 sm:py-32 lg:px-8">
       <div className="flex flex-col justify-center items-center text-center">
@@ -34,9 +37,8 @@ function App() {
         
         <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-5xl">Hello {inputValue}</h1>
         <p className="mt-6 text-base leading-7">Inform a username to continue:</p>
-        <div id="response"></div>
         
-        <div className="mt-10 flex items-center justify-center gap-x-6">
+        <div className="mt-6 flex items-center justify-center gap-x-6">
           <form
             className='flex gap-4'
             onSubmit={(e) => { 
