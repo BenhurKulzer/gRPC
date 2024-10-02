@@ -1,24 +1,25 @@
 # Dockerfile Client
-FROM node:18.18.0
-
-# RUN apt-get update && apt-get install -y protobuf-compiler
+FROM node:18-alpine3.15
 
 WORKDIR /app
 
-# ENV protoc_gen_grpc_web=./node_modules/.bin/protoc-gen-grpc-web
+RUN apk add --no-cache protobuf
+
+ENV protoc_gen_grpc_web=./node_modules/.bin/protoc-gen-grpc-web
 
 COPY ./client/package.json .
 COPY ./client/yarn.lock .
-# COPY ./protos/greeting.proto .
+COPY ./protos/greeting.proto .
 
 RUN yarn install
 
-# RUN mkdir -p ./client/src/protos
+RUN mkdir -p ./src/protos
+RUN protoc -I=. ./greeting.proto \
+    --plugin=protoc-gen-grpc-web=./node_modules/.bin/protoc-gen-grpc-web \
+    --js_out=import_style=commonjs:./src \
+    --grpc-web_out=import_style=commonjs,mode=grpcwebtext:./src
 
-# RUN protoc -I=. ./protos/greeting.proto \
-#     --plugin=protoc-gen-grpc-web=./client/node_modules/.bin/protoc-gen-grpc-web \
-#     --js_out=import_style=commonjs:./client/src \
-#     --grpc-web_out=import_style=commonjs,mode=grpcwebtext:./client/src
+COPY ./client .
 
 EXPOSE 8081
 CMD ["yarn", "start"]
