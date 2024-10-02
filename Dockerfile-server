@@ -8,7 +8,7 @@ COPY    ./server/yarn.lock .
 
 RUN     yarn install
 
-COPY    ../protos/api.proto .
+COPY    ./protos/greeting.proto .
 COPY    ./server/server.js .
 
 ENTRYPOINT ["node", "server.js"]

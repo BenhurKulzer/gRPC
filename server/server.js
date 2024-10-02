@@ -1,8 +1,8 @@
 import grpc from '@grpc/grpc-js';
 import protoLoader from '@grpc/proto-loader';
 
-const packageDefinition = protoLoader.loadSync('../protos/greeting.proto', {});
-const userProto = grpc.loadPackageDefinition(packageDefinition).greeting;
+const packageDefinition = protoLoader.loadSync('./protos/greeting.proto', {});
+const greetProto = grpc.loadPackageDefinition(packageDefinition).greeting;
 
 function doSayHello(call, callback) {
   callback(null, { message: "Hello " + call.request.name + "!" });
@@ -11,7 +11,7 @@ function doSayHello(call, callback) {
 function main() {
   const server = new grpc.Server();
 
-  server.addService(userProto.Greeter.service, {
+  server.addService(greetProto.Greeter.service, {
     greet: doSayHello,
   });
   

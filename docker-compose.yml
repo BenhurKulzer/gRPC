@@ -10,9 +10,9 @@ services:
     stop_signal: SIGINT
     depends_on:
       - envoy_service
-      - grpc_server_service
+      - server_service
 
-  grpc_server_service:
+  server_service:
     build:
       context: .
       dockerfile: Dockerfile-server

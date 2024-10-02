@@ -8,13 +8,15 @@ import LogoSvg from './assets/logo';
 const greetClient = async (name) => {
   const EnvoyURL = "http://localhost:8000";
   const client = new GreeterClient(EnvoyURL);
+
   const request = new GreetRequest();
   request.setName(name);
 
   const response = await client.greet(request, {});
+  console.log('Response A: ', response);
 
-  const div = document.getElementById("response");
-  if (div) div.innerText = response.getMessage();
+  // const div = document.getElementById("response");
+  // if (div) div.innerText = response.getMessage();
 };
 
 function App() {

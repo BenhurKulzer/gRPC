@@ -51,5 +51,5 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-                      address: grpc_server_service
+                      address: server_service
                       port_value: 50051
