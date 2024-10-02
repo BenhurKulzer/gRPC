@@ -1,7 +1,7 @@
 import grpc from '@grpc/grpc-js';
 import protoLoader from '@grpc/proto-loader';
 
-const packageDefinition = protoLoader.loadSync('./protos/greeting.proto', {});
+const packageDefinition = protoLoader.loadSync('./greeting.proto', {});
 const greetProto = grpc.loadPackageDefinition(packageDefinition).greeting;
 
 function doSayHello(call, callback) {
