@@ -2,6 +2,8 @@
 
 This is an example of a gRPC service call from a react client.
 
+![screenshot](https://raw.githubusercontent.com/BenhurKulzer/gRPC/refs/heads/main/client/src/assets/screenshot.png)
+
 - Front is running on `8081` and calls Envoy proxy on `8000`
 - Envoy on port `8000` calls grpc service on `50051`
 
