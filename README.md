@@ -1,50 +1,32 @@
-# React + TypeScript + Vite
+## Description:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an example of a gRPC service call from a react client.
 
-Currently, two official plugins are available:
+- Front is running on `8081` and calls Envoy proxy on `8000`
+- Envoy on port `8000` calls grpc service on `50051`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Lets Rock:
 
-## Expanding the ESLint configuration
+How to clone the repo & run it:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```
+git clone https://github.com/BenhurKulzer/gRPC.git
+cd gRPC
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+docker-compose build
+docker-compose up
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Then, in your favorite browser, open [`http://localhost:8081`](http://localhost:8081) (The front is using gRPC-web to call Envoy).
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Enter a name in the input and you should see:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```
+Hello {your_name}!
+```
+
+This project was builted using create-react-app (CRA) and gRPC-web & grpc. Proto files will be generated using the command founded in:
+
+```
+./proto-gen-grpc-web.sh
 ```

@@ -9,4 +9,3 @@ RUN     protoc --include_imports --include_source_info \
             --descriptor_set_out=greeting.pb greeting.proto
 
 FROM    envoyproxy/envoy:v1.22.0
-
