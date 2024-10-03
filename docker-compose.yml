@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile-client
     ports:
-      - "8081:8081"
+      - "3000:3000"
     stop_signal: SIGINT
     depends_on:
       - envoy_service
@@ -16,7 +16,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-server
-    ports: # just for debugging
+    ports:
       - "50051:50051"
 
   envoy_service:
@@ -25,5 +25,6 @@ services:
       dockerfile: Dockerfile-envoy
     ports:
       - "8000:8000"
+
     volumes:
       - ./envoy.yaml:/etc/envoy/envoy.yaml
