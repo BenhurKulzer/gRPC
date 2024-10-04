@@ -1,7 +1,8 @@
-FROM    alpine:3.15.1
+FROM    alpine:3.15.1 AS build
 
 WORKDIR /app
 
+RUN     apk add --no-cache protoc
 COPY    ./protos/greeting.proto .
 
 # build proto descriptor
@@ -9,3 +10,5 @@ RUN     protoc --include_imports --include_source_info \
             --descriptor_set_out=greeting.pb greeting.proto
 
 FROM    envoyproxy/envoy:v1.22.0
+
+COPY    --from=build /app/greeting.pb /tmp/

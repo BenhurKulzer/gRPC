@@ -14,7 +14,7 @@ function App() {
   }
 
   const greetClient = async (name) => {
-    const EnvoyURL = "http://127.0.0.1:8000";
+    const EnvoyURL = "http://0.0.0.0:8000";
     const client = new GreeterClient(EnvoyURL);
   
     const request = new GreetRequest();

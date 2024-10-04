@@ -15,8 +15,8 @@ function main() {
     greet: doSayHello,
   });
   
-  server.bindAsync('127.0.0.1:50051', grpc.ServerCredentials.createInsecure(), (err, port) => {
-    console.log(`Server running at http://127.0.0.1:${port}`);
+  server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), (err, port) => {
+    console.log(`Server running at http://0.0.0.0:${port}`);
     server.start();
   });
 }

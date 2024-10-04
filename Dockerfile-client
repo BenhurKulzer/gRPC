@@ -1,9 +1,9 @@
 # Dockerfile Client
 FROM node:18-alpine3.15
 
-WORKDIR /app
-
 RUN apk add --no-cache protobuf
+
+WORKDIR /app
 
 ENV protoc_gen_grpc_web=./node_modules/.bin/protoc-gen-grpc-web
 
@@ -21,5 +21,5 @@ RUN protoc -I=. ./greeting.proto \
 
 COPY ./client .
 
-EXPOSE 8081
+EXPOSE 3000
 CMD ["yarn", "start"]

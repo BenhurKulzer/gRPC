@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   client_service:
     build:
@@ -25,6 +23,5 @@ services:
       dockerfile: Dockerfile-envoy
     ports:
       - "8000:8000"
-
     volumes:
       - ./envoy.yaml:/etc/envoy/envoy.yaml
