@@ -15,8 +15,8 @@ How to clone the repo & run it:
 git clone https://github.com/BenhurKulzer/gRPC.git
 cd gRPC
 
-docker-compose build
-docker-compose up
+docker compose build
+docker compose up
 ```
 
 Then, in your favorite browser, open [`http://localhost:3000`](http://localhost:3000) (The front is using gRPC-web to call Envoy).
